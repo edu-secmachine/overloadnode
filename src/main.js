@@ -2,10 +2,15 @@ var fs = require("fs");
 var express = require('express');
 var app = express();
 require('./config/config');
-var userservice = require("./services/userservice");
 var passport = require('passport')
-var authservice = require('./services/auhtservice');
 var bodyParser = require('body-parser');
+const { validationResult } = require('express-validator/check');
+var validators = require('./validators/validators');
+
+var authservice = require('./services/auhtservice');
+var userservice = require("./services/userservice");
+var moviesevice = require('./services/movieservice');
+var fileservice = require('./services/fileservice');
 
 app.use(require('cookie-parser')());
 app.use(bodyParser.json()); // support json encoded bodies
@@ -27,13 +32,16 @@ app.post('/login',
       res.send(JSON.stringify(req.user));
    });
 
-
-app.put('/rest/user', function (req, res, next) {
+app.put('/rest/user', validators.uservalidators, function (req, res, next) {
+   const errors = validationResult(req);
+   if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+   }
    userservice.createUser(req.body, res, next);
 });
 
 app.get('/rest/user', authservice.isAuthenticated, function (req, res, next) {
-   res.send('get alll users: TODO!!!')
+   userservice.findAllUser(req, res, next);
 });
 
 app.post('/rest/user', authservice.isAuthenticated, function (req, res, next) {
@@ -41,19 +49,33 @@ app.post('/rest/user', authservice.isAuthenticated, function (req, res, next) {
 });
 
 app.get('/rest/user/changepwd', authservice.isAuthenticated, function (req, res, next) {
-   res.send('changepwd: TODO!!!')
+   userservice.changePassword(req, res, next);
 });
 
 app.post('/rest/movie', authservice.isAuthenticated, function (req, res, next) {
-   res.send('create movie : TODO!!!')
+   moviesevice.createMovie(req.body, res, next);
 });
 
 app.get('/rest/movie', authservice.isAuthenticated, function (req, res, next) {
-   res.send('finind movies by title, description, genre, id (none is monadatory) : TODO!!!')
+   moviesevice.findMovies(req, res, next);
 });
 
-app.post('/uploadFile', authservice.isAuthenticated, function(req, res, next){
-   res.send('file upload: TODO!!!')
+const multer = require('multer');
+const storage = multer.diskStorage({
+   destination: function(req, file, callback) {
+       callback(null, process.env.app_folder)
+   },
+   filename: function(req, file, callback) {
+       callback(null, file.originalname)
+       //callback(null, file.originalname)
+   }
+})
+const upload = multer({
+  storage: storage
+}); 
+
+app.post('/uploadFile', authservice.isAuthenticated, upload.single('file'),function (req, res, next) {
+   res.send('ok');
 });
 
 app.get('/downloadFile', authservice.isAuthenticated, function (req, res, next) {
