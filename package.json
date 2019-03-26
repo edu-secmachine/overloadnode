@@ -1,0 +1,20 @@
+{
+  "name": "nodeoverload",
+  "version": "1.0.0",
+  "description": "An intentionally vulnerable node/express app for eductaional purposes",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nyilasypeter",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.2",
+    "multer": "^1.4.1"
+  }
+}
