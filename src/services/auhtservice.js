@@ -45,10 +45,7 @@ authuser = function (username, pwd, done) {
             },
             
         )
-        .project({
-            name: 1,
-            mailAddress: 1
-        })
+        .project({name: 1, emailAddress: 1})
         .toArray(function (err, result) {
             if (err) {
                 console.log("Error during mongo query");

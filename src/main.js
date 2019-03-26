@@ -29,7 +29,7 @@ app.post('/login',
 
 
 app.put('/rest/user', function (req, res, next) {
-   res.send('registration (create user): TODO!!!')
+   userservice.createUser(req.body, res, next);
 });
 
 app.get('/rest/user', authservice.isAuthenticated, function (req, res, next) {
