@@ -60,26 +60,14 @@ app.get('/rest/movie', authservice.isAuthenticated, function (req, res, next) {
    moviesevice.findMovies(req, res, next);
 });
 
-const multer = require('multer');
-const storage = multer.diskStorage({
-   destination: function(req, file, callback) {
-       callback(null, process.env.app_folder)
-   },
-   filename: function(req, file, callback) {
-       callback(null, file.originalname)
-       //callback(null, file.originalname)
-   }
-})
-const upload = multer({
-  storage: storage
-}); 
 
-app.post('/uploadFile', authservice.isAuthenticated, upload.single('file'),function (req, res, next) {
-   res.send('ok');
+
+app.post('/uploadFile', authservice.isAuthenticated, function (req, res, next) {
+   fileservice.writeFile(req, res, next);
 });
 
 app.get('/downloadFile', authservice.isAuthenticated, function (req, res, next) {
-   res.send('file download TODO!!! (file should be specified with the fileName param')
+   fileservice.readFile(req, res, next);
 });
 
 

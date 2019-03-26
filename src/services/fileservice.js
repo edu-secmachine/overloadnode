@@ -1,28 +1,32 @@
 require('../config/config');
 const multer = require('multer');
-const upload = multer({
-  dest: process.env.app_folder
-}); 
 
 var exp = module.exports = {};
 
+const storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, process.env.app_folder)
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname)
+        //callback(null, file.originalname)
+    }
+})
+
 exp.writeFile = function (req, res, next) {
-    upload.single('file')
-   //var file = req.files[0];
-   res.send('ok');
-   
+    var upload = multer({
+        storage: storage
+    }).single('file');
+    upload(req, res, function (err) {
+        console.log("File uploaded");
+        res.end('File is uploaded')
+    })
+
 }
 
 
 
-exp.readFile = function(fileName, response) {
-    var filePath = process.env.app_folder + fileName;
-    console.log('shall read file: ' + filePath);
-    fs.readFile(filePath, function (err, data) {
-       if (err) {
-          return console.error(err);
-       }
-       console.log('file reading returned with content: ' + data.toString());
-       response.end(data.toString());
-    });
- }
+exp.readFile = function (req, response, next) {
+    var filePath = process.env.app_folder + req.query.fileName;
+    response.download(filePath);
+}
