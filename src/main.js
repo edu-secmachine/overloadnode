@@ -14,62 +14,58 @@ app.use(require('express-session')({
    secret: 'keyboard cat',
    resave: true,
    saveUninitialized: true
- }));
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// This responds with "Hello World" on the homepage
-app.get('/', function (req, res, next) {
-   console.log("Got a GET request for the homepage");
-   userservice.findUser(req.query.name, req.query.password, res, next);
-})
 
-// This responds a POST request for the homepage
-app.post('/', function (req, res) {
-   console.log("Got a POST request for the homepage");
-   res.send('Hello POST');
-})
 
 app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-     console.log('Got a POST request to /login')
-    res.send(JSON.stringify(req.user));
-  });
+   passport.authenticate('local'),
+   function (req, res) {
+      console.log('Got a POST request to /login')
+      res.send(JSON.stringify(req.user));
+   });
 
-// This responds a DELETE request for the /del_user page.
-app.delete('/del_user', function (req, res) {
-   console.log("Got a DELETE request for /del_user");
-   res.send('Hello DELETE');
-})
 
-// This responds a GET request for the /list_user page.
-app.get('/list_user',authservice.isAuthenticated, function (req, res) {
-   console.log("Got a GET request for /list_user");
-   res.send('Page Listing');
-})
+app.put('/rest/user', function (req, res, next) {
+   res.send('registration (create user): TODO!!!')
+});
 
-// This responds a GET request for abcd, abxcd, ab123cd, and so on
-app.get('/ab*cd', function (req, res) {
-   console.log("Got a GET request for /ab*cd");
-   res.send('Page Pattern Match');
-})
+app.get('/rest/user', authservice.isAuthenticated, function (req, res, next) {
+   res.send('get alll users: TODO!!!')
+});
 
-var server = app.listen(8081, function () {
-   var host = server.address().address
+app.post('/rest/user', authservice.isAuthenticated, function (req, res, next) {
+   res.send('modify user: TODO!!!')
+});
+
+app.get('/rest/user/changepwd', authservice.isAuthenticated, function (req, res, next) {
+   res.send('changepwd: TODO!!!')
+});
+
+app.post('/rest/movie', authservice.isAuthenticated, function (req, res, next) {
+   res.send('create movie : TODO!!!')
+});
+
+app.get('/rest/movie', authservice.isAuthenticated, function (req, res, next) {
+   res.send('finind movies by title, description, genre, id (none is monadatory) : TODO!!!')
+});
+
+app.post('/uploadFile', authservice.isAuthenticated, function(req, res, next){
+   res.send('file upload: TODO!!!')
+});
+
+app.get('/downloadFile', authservice.isAuthenticated, function (req, res, next) {
+   res.send('file download TODO!!! (file should be specified with the fileName param')
+});
+
+
+
+var server = app.listen(8081, '127.0.0.1', function () {
+   var host = server.address().address;
    var port = server.address().port
 
    console.log("Example app listening at http://%s:%s", host, port)
 })
 
-function readFile(fileName, response) {
-   var filePath = process.env.app_folder + fileName;
-   console.log('shall read file: ' + filePath);
-   fs.readFile(filePath, function (err, data) {
-      if (err) {
-         return console.error(err);
-      }
-      console.log('file reading returned with content: ' + data.toString());
-      response.end(data.toString());
-   });
-}
