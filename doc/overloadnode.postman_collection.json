@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "5e33b1c5-ce0c-413b-8128-a432f4d10013",
+		"name": "overloadnode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"disabled": true
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/uploadFile",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"uploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:4200/login"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Mézga Aladár",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "aradadal",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{host}}/rest/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"aladar2\",\n\t\"sex\": \"m\",\n\t\"emailAddress\": \"aladar@m.hu\",\n\t\"password\": \"aradadal\",\n\t\"webPageUrl\": \"www.mezgaaladar.hu\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/rest/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crate Movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Star Wars: The Empire strikes back!\",\n\t\"description\": \"After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader.\",\n\t\"genre\": \"sci-fi\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/rest/movie",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Movies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{host}}/rest/movie?",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"movie"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "alma",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change pwd",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{host}}/rest/user/changepwd?newpwd=a",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"user",
+						"changepwd"
+					],
+					"query": [
+						{
+							"key": "newpwd",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download file",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{host}}/downloadFile?fileName=solutions.txt",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"downloadFile"
+					],
+					"query": [
+						{
+							"key": "fileName",
+							"value": "solutions.txt"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:4200"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\":\"5c9a623dea1fb16996f948df\",\n\t\"name\":\"Mézga Aladár Bálint\",\n\t\"emailAddress\":\"mezga@aladar.hu\",\n\t\"motto\":\"új motto\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/rest/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
