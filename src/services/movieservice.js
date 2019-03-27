@@ -32,7 +32,7 @@ exp.createMovie = function (movie, res, next) {
       var db = client.db('movie');
       db.collection('movies').insertOne(movie, function(err, result){
         if(err) {console.log(err);return next(err);}
-        res.send(result);
+        else{res.send(result);}
      });
    })
 }
