@@ -64,12 +64,41 @@ exp.changePassword = function (req, res, next) {
 
       var db = client.db('movie');
       db.collection('users').updateOne(
-         {_id: ObjectID(user._id)}, 
-         {$set:{password: user.password}}, 
+         { _id: ObjectID(user._id) },
+         { $set: { password: user.password } },
          function (err, result) {
-         if (err) return next(err);
-         res.send(result);
-      })
+            if (err) return next(err);
+            res.send(result);
+         })
    })
 
+}
+
+exp.modifyUser = function (req, res, next) {
+   var user = req.user;
+   var modifierUser = {};
+   if (req.body.emailAddress) {
+      modifierUser.emailAddress = req.body.emailAddress;
+   }
+   if (req.body.name) {
+      modifierUser.name = req.body.name;
+   }
+   if (req.body.webPageUrl) {
+      modifierUser.webPageUrl = req.body.webPageUrl;
+   }
+   if (req.body.motto) {
+      modifierUser.motto = req.body.motto;
+   }
+   MongoClient.connect(process.env.mongo_url, { useNewUrlParser: true }, function (err, client) {
+      if (err) { return next(err) }
+
+      var db = client.db('movie');
+      db.collection('users').updateOne(
+         { _id: ObjectID(user._id) },
+         { $set: modifierUser },
+         function (err, result) {
+            if (err) return next(err);
+            res.send(result);
+         })
+   })
 }

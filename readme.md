@@ -7,7 +7,7 @@
 3. [Accessing the API via Postman](#Postman)
 4. [Exercises](#Exercises)
     1.  [Exercise 1 - Break the login](#Exercise_login)
-    1.  [Exercise 5 - File handling](#Exercise_file)
+    1.  [Exercise 2 - File handling](#Exercise_file)
 
 <a name="Introduction"></a>
 ## Introduction 
@@ -53,14 +53,14 @@ After you imported the collection you will have to create an environment within 
 
 <a name="Exercise_login"></a>
 ### Exercise 1 – Break the login
-**Short Description**
+**Short Description**  
 The login functionality contains a vulnerability, which enables an attacker to login without a password.
 
 
-**Postman request**
+**Postman request**  
 With Postman check the Login request in the Overloadnode collection to see how it works!
 
-**Detailed description**
+**Detailed description**  
 The service behind login is vulnerable to one of the most classic exploit of programming. Find the vulnerability, and exploit it so that you can login to the app without any username.    
 The vulnerability is ot trivial to find, it is ok, if you check the source-code (pay attention to authservice.js).   
 When you are done, check the source code (MovieService.findMovie) and fix it.   
@@ -71,7 +71,7 @@ Discuss what could have been the developers motivation creating this code!
 **Short Description**
 The application has a file upload and a file download functionality. Both of them suffer from several vulnerabilities. Find a vulnerability, with which you can read any file from the server's files-system!
 
-**Service endpoint**
+**Service endpoint**  
 FILE UPLOAD  
 *Request Method*: POST  
 *URL*: /uploadFile  
@@ -83,11 +83,11 @@ FILE DOWNLOAD
 *URL*: /downloadFile?fileName=&lt;file name&gt;  
 *Response*:  The file to be downloaded  
 
-**Postman request**
+**Postman request**  
 Upload File  
 Donwload File  
 
-**Detailed description**
+**Detailed description**  
 The application stores uploaded files on the server's file-system. In order for the upload and download functionality to work you first have to set the value of the 'app_folder' property in the .env file to some reasonabel value (to a real path which exists on your machine).  
 Then try to download a file with the application that is outside of this directory!  
 Once you are done fix the found vulnerability!  

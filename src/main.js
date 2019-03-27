@@ -26,7 +26,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var whitelist = ['http://localhost:4200', 'http://example2.com']
+var whitelist = ['http://localhost:4200', 'http://localhost:4200']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -60,8 +60,8 @@ app.get('/rest/user', authservice.isAuthenticated, function (req, res, next) {
    userservice.findAllUser(req, res, next);
 });
 
-app.post('/rest/user', authservice.isAuthenticated, function (req, res, next) {
-   res.send('modify user: TODO!!!')
+app.post('/rest/user', authservice.isAuthenticated, validators.userprofilevalidators, function (req, res, next) {
+   userservice.modifyUser(req, res, next);
 });
 
 app.get('/rest/user/changepwd', authservice.isAuthenticated, function (req, res, next) {
