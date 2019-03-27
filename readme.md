@@ -97,7 +97,7 @@ What other voulnerabiltites can you spot in the upload file functionality? How w
 
 <a name="Exercise_dos"></a>
 ### Exercise 3 – DOS
-**Short Description**
+**Short Description**  
 The application is vulnerable to a classic js DOS (denial of service) attack. Find it and fix it!  
 
 **Postman request**  
