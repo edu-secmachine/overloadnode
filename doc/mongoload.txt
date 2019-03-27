@@ -1,5 +1,6 @@
 db.users.insert([
-{name: "Mézgáné Rezovics Paula", sex:"Nő", password: hex_md5("Hufnagel"), emailAddress:"mezga@paula.hu", webPageUrl: "https://hu.wikipedia.org/wiki/M%C3%A9zga_csal%C3%A1d#Paula", motto : "Bár csak a Huffnágel Pistát vátlasztottam vátlasztottam volna!"},
-{name: "Mézga Aladár", sex:"ffi", password: hex_md5("aradadal"), emailAddress:"mezga@aladar.hu", webPageUrl: "https://hu.wikipedia.org/wiki/M%C3%A9zga_csal%C3%A1d#Alad%C3%A1r", motto : "Öt forintért megmondom."},
-{name: "Mézga Géza", sex:"ffi", password: hex_md5("geza"), emailAddress:"mezga@geza.hu", webPageUrl: "https://hu.wikipedia.org/wiki/M%C3%A9zga_G%C3%A9za", motto : "Kapcs ford!"}
-])
+{ "name" : "Mézgáné Rezovics Paula", "sex" : "Nő", "password" : "a3a4901029799458c3b0ec562b9c8d7e", "emailAddress" : "mezga@paula.hu", "webPageUrl" : "https://hu.wikipedia.org/wiki/M%C3%A9zga_csal%C3%A1d#Paula", "motto" : "Bár csak a Huffnágel Pistát vátlasztottam vátlasztottam volna!" },
+{ "name" : "Mézga Aladár", "sex" : "ffi", "password" : "14ca8fa341058e099f8ebc16a65d435d", "emailAddress" : "mezga@aladar.hu", "webPageUrl" : "https://hu.wikipedia.org/wiki/M%C3%A9zga_csal%C3%A1d#Alad%C3%A1r", "motto" : "Öt forintért megmondom." },
+{ "name" : "Mézga Géza", "sex" : "ffi", "password" : "53ebf2b2e85874061f2dc6743ea756fa", "emailAddress" : "mezga@geza.hu", "webPageUrl" : "https://hu.wikipedia.org/wiki/M%C3%A9zga_G%C3%A9za", "motto" : "Kapcs ford!" }
+]);
+db.createCollection("movies");

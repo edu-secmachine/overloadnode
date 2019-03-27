@@ -95,10 +95,10 @@ function validate(req, res) {
    return true;
 }
 
-var server = app.listen(8081, '127.0.0.1', function () {
+var server = app.listen(process.env.my_port, '127.0.0.1', function () {
    var host = server.address().address;
    var port = server.address().port
 
-   console.log("Example app listening at http://%s:%s", host, port)
+   console.log("Overloadnode app listening at http://%s:%s", host, port)
 })
 
