@@ -28,7 +28,7 @@ exp.findMovies = function (req, res, next) {
 
 exp.createMovie = function (movie, res, next) {
    MongoClient.connect(process.env.mongo_url, { useNewUrlParser: true }, function (err, client) {
-      if (err) { next(err);}
+      if (err) { return next(err);}
       var db = client.db('movie');
       db.collection('movies').insertOne(movie, function(err, result){
         if(err) {console.log(err);return next(err);}
