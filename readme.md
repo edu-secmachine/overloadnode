@@ -8,6 +8,7 @@
 4. [Exercises](#Exercises)
     1.  [Exercise 1 - Break the login](#Exercise_login)
     1.  [Exercise 2 - File handling](#Exercise_file)
+    1.  [Exercise 3 - DOS](#Exercise_dos)
 
 <a name="Introduction"></a>
 ## Introduction 
@@ -92,4 +93,20 @@ The application stores uploaded files on the server's file-system. In order for 
 Then try to download a file with the application that is outside of this directory!  
 Once you are done fix the found vulnerability!  
 What other voulnerabiltites can you spot in the upload file functionality? How would you fix theese?  
+
+
+<a name="Exercise_dos"></a>
+### Exercise 3 – DOS
+**Short Description**
+The application is vulnerable to a classic js DOS (denial of service) attack. Find it and fix it!  
+
+**Postman request**  
+Modify user
+
+**Detailed description**  
+Find a DOS vulnerability in the Modify user functionality and expoit it!  
+It's a good idea to check the source code to know where to start from.  
+Why does this particular vulnerability have so serious consequences in the Node ecosystem?  
+Fix the vulnerability!  
+
 
